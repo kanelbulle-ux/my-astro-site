@@ -1,0 +1,79 @@
+---
+const features = [
+  {
+    emoji: "🛡️",
+    title: "Centralized Control",
+    description:
+      "Manage all your WordPress site access from one unified dashboard with real-time synchronization.",
+  },
+  {
+    emoji: "⚡",
+    title: "Real-time Protection",
+    description:
+      "Instant IP blocking and allowlist updates across all your sites with zero propagation delay.",
+  },
+  {
+    emoji: "🔧",
+    title: "Easy Integration",
+    description:
+      "Simple plugin installation with automatic configuration. No technical expertise required.",
+  },
+  {
+    emoji: "📊",
+    title: "Access Analytics",
+    description:
+      "Detailed insights into who's accessing your sites, when, and from where with comprehensive logs.",
+  },
+  {
+    emoji: "🌐",
+    title: "CIDR Support",
+    description:
+      "Advanced network notation support for managing entire IP ranges and complex network configurations.",
+  },
+  {
+    emoji: "⏰",
+    title: "Auto Cleanup",
+    description:
+      "Intelligent removal of old, unused entries to keep your allowlists clean and performant.",
+  },
+];
+---
+
+<section id="features" class="py-20 bg-secure-light">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <div class="text-center mb-16">
+      <h2
+        class="text-4xl md:text-5xl font-bold text-secure-black leading-tight tracking-tight mb-6"
+      >
+        Everything you need for WordPress security
+      </h2>
+      <p class="text-lg text-secure-gray max-w-3xl mx-auto">
+        Comprehensive IP management with enterprise-grade features designed
+        specifically for WordPress environments.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        features.map((feature, index) => (
+          <div
+            class="group bg-white rounded-2xl p-8 border border-secure-border hover:translate-y-[-4px] hover:shadow-xl transition-all duration-300 cursor-pointer animate-fade-in-up"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="w-16 h-16 bg-secure-light rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-3xl">{feature.emoji}</span>
+            </div>
+
+            <h3 class="text-xl font-bold text-secure-black mb-4">
+              {feature.title}
+            </h3>
+
+            <p class="text-secure-gray leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

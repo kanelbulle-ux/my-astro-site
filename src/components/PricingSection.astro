@@ -1,0 +1,180 @@
+---
+const plans = [
+  {
+    name: "Starter",
+    price: "$9",
+    period: "/month",
+    description: "Perfect for individual developers",
+    sites: "3 sites",
+    features: [
+      "IP allowlist management",
+      "Basic access logs",
+      "Email support",
+      "CIDR notation support",
+      "Manual IP cleanup",
+    ],
+    cta: "Start Free Trial",
+    popular: false,
+  },
+  {
+    name: "Professional",
+    price: "$29",
+    period: "/month",
+    description: "Best for growing agencies",
+    sites: "15 sites",
+    features: [
+      "Everything in Starter",
+      "Real-time monitoring",
+      "Advanced analytics",
+      "Priority support",
+      "Auto cleanup rules",
+      "Team collaboration",
+      "API access",
+    ],
+    cta: "Start Free Trial",
+    popular: true,
+  },
+  {
+    name: "Agency",
+    price: "$99",
+    period: "/month",
+    description: "For large organizations",
+    sites: "Unlimited sites",
+    features: [
+      "Everything in Professional",
+      "White-label options",
+      "Custom integrations",
+      "Dedicated support",
+      "SLA guarantee",
+      "Advanced permissions",
+      "Custom reporting",
+    ],
+    cta: "Contact Sales",
+    popular: false,
+  },
+];
+---
+
+<section id="pricing" class="py-20 bg-white">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <div class="text-center mb-16">
+      <h2
+        class="text-4xl md:text-5xl font-bold text-secure-black leading-tight tracking-tight mb-6"
+      >
+        Simple, transparent pricing
+      </h2>
+      <p class="text-lg text-secure-gray max-w-3xl mx-auto">
+        Choose the plan that fits your needs. All plans include a 14-day free
+        trial with no credit card required.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {
+        plans.map((plan, index) => (
+          <div
+            class={`relative rounded-2xl p-8 border transition-all duration-300 hover:translate-y-[-4px] hover:shadow-xl ${
+              plan.popular
+                ? "bg-secure-black text-white border-secure-black scale-105"
+                : "bg-white border-secure-border hover:border-gray-300"
+            }`}
+          >
+            {plan.popular && (
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div class="bg-secure-green text-white px-4 py-1 rounded-full text-sm font-medium">
+                  Most Popular
+                </div>
+              </div>
+            )}
+
+            <div class="text-center mb-8">
+              <h3
+                class={`text-2xl font-bold mb-2 ${
+                  plan.popular ? "text-white" : "text-secure-black"
+                }`}
+              >
+                {plan.name}
+              </h3>
+              <p
+                class={`text-sm mb-4 ${
+                  plan.popular ? "text-gray-300" : "text-secure-gray"
+                }`}
+              >
+                {plan.description}
+              </p>
+              <div class="flex items-baseline justify-center">
+                <span
+                  class={`text-5xl font-bold ${
+                    plan.popular ? "text-white" : "text-secure-black"
+                  }`}
+                >
+                  {plan.price}
+                </span>
+                <span
+                  class={`text-lg ml-1 ${
+                    plan.popular ? "text-gray-300" : "text-secure-gray"
+                  }`}
+                >
+                  {plan.period}
+                </span>
+              </div>
+              <p
+                class={`text-sm font-medium mt-2 ${
+                  plan.popular ? "text-gray-300" : "text-secure-gray"
+                }`}
+              >
+                {plan.sites}
+              </p>
+            </div>
+
+            <ul class="space-y-4 mb-8">
+              {plan.features.map((feature) => (
+                <li class="flex items-center space-x-3">
+                  <div class="w-5 h-5 rounded-full bg-secure-green flex items-center justify-center flex-shrink-0">
+                    <svg
+                      class="w-3 h-3 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    class={`text-sm ${
+                      plan.popular ? "text-gray-300" : "text-secure-gray"
+                    }`}
+                  >
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <button
+              class={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-200 hover:translate-y-[-2px] hover:shadow-lg ${
+                plan.popular
+                  ? "bg-white text-secure-black hover:bg-gray-100"
+                  : "bg-secure-black text-white hover:bg-gray-800"
+              }`}
+            >
+              {plan.cta}
+            </button>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="text-secure-gray text-sm">
+        All plans include 14-day free trial • No credit card required • Cancel
+        anytime
+      </p>
+    </div>
+  </div>
+</section>

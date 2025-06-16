@@ -1,0 +1,80 @@
+---
+const partners = [
+  "WordPress.org",
+  "WP Engine", 
+  "Kinsta",
+  "SiteGround",
+  "Cloudflare",
+  "DigitalOcean",
+];
+---
+
+<section class="py-16 bg-secure-bg">
+  <div class="container mx-auto px-6 text-center max-w-6xl">
+    <p class="text-sm text-secure-gray mb-8">
+      Trusted by{" "}
+      <span class="font-semibold text-secure-black">
+        <span id="counter">1000</span>+
+      </span>{" "}
+      security-conscious teams
+    </p>
+
+    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+      {
+        partners.map((partner, index) => (
+          <div
+            class="text-secure-gray font-medium text-base md:text-lg opacity-70 hover:opacity-100 transition-opacity duration-200 animate-fade-in"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            {partner}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animated counter
+  function animateCounter() {
+    const counter = document.getElementById("counter");
+    if (!counter) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            let count = 0;
+            const target = 1000;
+            const duration = 2000;
+            const startTime = Date.now();
+
+            const animate = () => {
+              const elapsed = Date.now() - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              
+              count = Math.floor(progress * target);
+              counter.textContent = count.toLocaleString();
+
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              }
+            };
+
+            animate();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(counter);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", animateCounter);
+  } else {
+    animateCounter();
+  }
+</script>

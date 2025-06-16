@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+import HeroSection from "../components/HeroSection.astro";
+import TrustIndicators from "../components/TrustIndicators.astro";
+import ProductDemo from "../components/ProductDemo";
+import FeaturesGrid from "../components/FeaturesGrid.astro";
+import PricingSection from "../components/PricingSection.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Footer from "../components/Footer.astro";
+
+import "../styles/global.css";
+---
+
+<Layout
+  title="SecureList - Secure your WordPress sites smarter"
+  description="SecureList is the only centralized IP allowlist platform offering real-time protection and instant access control to boost security, reduce breaches, and eliminate unauthorized access."
+>
+  <div class="min-h-screen bg-secure-bg overflow-x-hidden">
+    <Navigation />
+
+    <main>
+      <HeroSection />
+      <TrustIndicators />
+      <ProductDemo client:load />
+      <FeaturesGrid />
+      <PricingSection />
+      <FinalCTA />
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

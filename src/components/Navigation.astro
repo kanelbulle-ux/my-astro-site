@@ -1,0 +1,220 @@
+---
+---
+
+<header
+  id="navigation"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+>
+  <div class="container mx-auto px-6 py-5 max-w-6xl">
+    <nav class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <span class="text-2xl">🛡️</span>
+        <span class="text-xl font-bold text-secure-black">SecureList</span>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a
+          href="#features"
+          class="text-secure-gray hover:text-secure-black transition-colors duration-200 relative group nav-link"
+        >
+          Features
+          <span
+            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secure-black group-hover:w-full transition-all duration-200"
+          ></span>
+        </a>
+        <a
+          href="#pricing"
+          class="text-secure-gray hover:text-secure-black transition-colors duration-200 relative group nav-link"
+        >
+          Pricing
+          <span
+            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secure-black group-hover:w-full transition-all duration-200"
+          ></span>
+        </a>
+        <a
+          href="#demo"
+          class="text-secure-gray hover:text-secure-black transition-colors duration-200 relative group nav-link"
+        >
+          Demo
+          <span
+            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secure-black group-hover:w-full transition-all duration-200"
+          ></span>
+        </a>
+      </div>
+
+      <!-- Desktop CTA + Mobile Menu Button -->
+      <div class="flex items-center space-x-4">
+        <button
+          id="desktop-cta"
+          class="hidden md:block bg-secure-black text-white px-6 py-2.5 rounded-xl font-medium hover:translate-y-[-2px] hover:shadow-lg transition-all duration-200"
+        >
+          Book a demo
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secure-black">
+          <svg
+            id="menu-icon"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg
+            id="close-icon"
+            class="w-6 h-6 hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-secure-border hidden"
+    >
+      <div class="px-6 py-4 space-y-4">
+        <a
+          href="#features"
+          class="block text-secure-gray hover:text-secure-black transition-colors duration-200 mobile-nav-link"
+        >
+          Features
+        </a>
+        <a
+          href="#pricing"
+          class="block text-secure-gray hover:text-secure-black transition-colors duration-200 mobile-nav-link"
+        >
+          Pricing
+        </a>
+        <a
+          href="#demo"
+          class="block text-secure-gray hover:text-secure-black transition-colors duration-200 mobile-nav-link"
+        >
+          Demo
+        </a>
+        <button
+          id="mobile-cta"
+          class="w-full bg-secure-black text-white px-6 py-2.5 rounded-xl font-medium hover:translate-y-[-2px] hover:shadow-lg transition-all duration-200"
+        >
+          Book a demo
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Navigation scroll effects
+  function handleNavigation() {
+    const nav = document.getElementById("navigation");
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const desktopCta = document.getElementById("desktop-cta");
+    const mobileCta = document.getElementById("mobile-cta");
+    
+    if (!nav || !mobileMenuBtn || !mobileMenu || !menuIcon || !closeIcon) return;
+
+    let isMobileMenuOpen = false;
+
+    // Handle scroll effects
+    function handleScroll() {
+      const isScrolled = window.scrollY > 20;
+      
+      if (isScrolled) {
+        nav.classList.remove("bg-transparent");
+        nav.classList.add("bg-white/95", "backdrop-blur-sm", "border-b", "border-secure-border");
+      } else {
+        nav.classList.add("bg-transparent");
+        nav.classList.remove("bg-white/95", "backdrop-blur-sm", "border-b", "border-secure-border");
+      }
+    }
+
+    // Handle mobile menu toggle
+    function toggleMobileMenu() {
+      isMobileMenuOpen = !isMobileMenuOpen;
+      
+      if (isMobileMenuOpen) {
+        mobileMenu.classList.remove("hidden");
+        menuIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+      } else {
+        mobileMenu.classList.add("hidden");
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      }
+    }
+
+    // Handle CTA clicks
+    function handleCtaClick() {
+      const demoSection = document.getElementById("demo");
+      if (demoSection) {
+        demoSection.scrollIntoView({ behavior: "smooth" });
+      }
+      
+      // Close mobile menu if open
+      if (isMobileMenuOpen) {
+        toggleMobileMenu();
+      }
+    }
+
+    // Handle nav link clicks
+    function handleNavLinkClick(e: Event) {
+      e.preventDefault();
+      const target = e.target as HTMLAnchorElement;
+      const href = target.getAttribute("href");
+      
+      if (href && href.startsWith("#")) {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      
+      // Close mobile menu if open
+      if (isMobileMenuOpen) {
+        toggleMobileMenu();
+      }
+    }
+
+    // Event listeners
+    window.addEventListener("scroll", handleScroll);
+    mobileMenuBtn.addEventListener("click", toggleMobileMenu);
+    
+    if (desktopCta) desktopCta.addEventListener("click", handleCtaClick);
+    if (mobileCta) mobileCta.addEventListener("click", handleCtaClick);
+
+    // Add click handlers to all nav links
+    document.querySelectorAll(".nav-link, .mobile-nav-link").forEach(link => {
+      link.addEventListener("click", handleNavLinkClick);
+    });
+
+    // Initial scroll check
+    handleScroll();
+  }
+
+  // Initialize when DOM is loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", handleNavigation);
+  } else {
+    handleNavigation();
+  }
+</script>
